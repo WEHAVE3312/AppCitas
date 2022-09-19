@@ -1,4 +1,5 @@
 namespace AppCitas;
+
 public class Program
 {
     public static void Main(string[] args)
@@ -13,4 +14,3 @@ public class Program
                 webBuilder.UseStartup<Startup>();
             });
 }
-
