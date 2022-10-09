@@ -1,5 +1,5 @@
-using AppCitas.Service.Data;
-using Microsoft.EntityFrameworkCore;
+using AppCitas.Service.Extensions;
+using AppCitas.Service.Middleware;
 using Microsoft.OpenApi.Models;
 
 namespace AppCitas;
@@ -18,14 +18,10 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<DataContext>(options =>
-        {
-            options.UseSqlite(
-                _config.GetConnectionString("DefaultConnection")
-            );
-        });
+        services.AddApplicationServices(_config);
         services.AddControllers();
         services.AddCors();
+        services.AddIdentityServices(_config);
 
         services.AddSwaggerGen(c =>
         {
@@ -36,18 +32,15 @@ public class Startup
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
-        }
+        app.UseMiddleware<ExceptionMiddleware>();
 
         app.UseHttpsRedirection();
 
         app.UseRouting();
 
         app.UseCors(p => p.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+        app.UseAuthentication();
 
         app.UseAuthorization();
 

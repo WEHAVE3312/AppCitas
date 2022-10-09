@@ -1,2 +1,2 @@
 # AppCitas
-Curso de servicios Web para ICI 2022
+Curso de Servicios Web para ICI de noveno semestre.
