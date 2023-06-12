@@ -116,7 +116,7 @@ namespace AppCitas.UnitTests.Tests
         }
 
         [Theory]
-        [InlineData("Created", "wagner", "Pa$$w0rd", "../../../a.jpg")]
+        [InlineData("Created", "wagner", "Pa$$w0rd", "../../../a.JPG")]
         public async Task AddPhoto_Created(string statusCode, string username, string password, string file)
         {
             // Arrange
@@ -150,7 +150,7 @@ namespace AppCitas.UnitTests.Tests
         }
 
         [Theory]
-        [InlineData("NoContent", "tanner", "Pa$$w0rd", "../../../b.jpg")]
+        [InlineData("NoContent", "tanner", "Pa$$w0rd", "../../../b.JPG")]
         public async Task SetMainPhoto_OK(string statusCode, string username, string password, string file)
         {
             // Arrange
@@ -193,7 +193,7 @@ namespace AppCitas.UnitTests.Tests
         }
 
         [Theory]
-        [InlineData("OK", "lisa", "Pa$$w0rd", "../../../c.jpg")]
+        [InlineData("OK", "lisa", "Pa$$w0rd", "../../../c.JPG")]
         public async Task DeletePhoto_OK(string statusCode, string username, string password,string file)
         {
             // Arrange
